@@ -1,31 +1,29 @@
-# Tài liệu Đặc tả Yêu cầu Hệ thống (SRS)
-## Dự án: TechNova Digital Onboarding Kit
+TÀI LIỆU ĐẶC TẢ QUY TRÌNH ONBOARDING SỐ (SRS)
 
-## 1. Tổng quan bài toán
-Startup TechNova mỗi tháng đón thêm 10-15 nhân sự mới nhưng thiếu quy trình bàn giao đồng bộ. Dự án này xây dựng một bộ cẩm nang số nhằm giải quyết 4 vấn đề cốt lõi:
-- **Không gian cộng tác:** Quy chuẩn hóa Hybrid Workflow và phân quyền file an toàn.
-- **Môi trường trình duyệt:** Tách biệt tài khoản cá nhân và công việc qua đa Profile.
-- **An toàn thông tin:** Quản lý pass bằng Bitwarden, bật 2FA và bảo vệ file `.env`.
-- **Tự chủ gỡ lỗi:** Trang bị kỹ năng tra cứu Google và báo lỗi 4 bước cho nhân viên mới.
+STARTUP TECHNOVA
 
-## 2. Chi tiết 4 Module chính
+MỤC LỤC TỰ ĐỘNG
+Nội dung mục lục được tạo tự động từ Heading Styles (1, 2, 3):
 
-### Module 1: Không gian đám mây (`cloud-workspace/`)
-- Lưu bản làm việc trên ổ cứng Local, đồng thời bật Google Drive for Desktop để auto-sync lên cloud.
-- Đặt tên thư mục theo chuẩn `kebab-case` (ví dụ: `01-projects/`, `05-personal/`).
-- Phân quyền rõ ràng (Viewer, Commenter, Editor); tuyệt đối không dùng link công khai kèm quyền Editor.
+1. Giới thiệu tổng quan
+Tài liệu đặc tả này quy định chuẩn hóa quy trình tiếp nhận và bàn giao không gian làm việc số cho
+nhân viên mới tại Startup TechNova, giải quyết tình trạng phân tán dữ liệu và mất an toàn thông tin.
+1.1. Mục tiêu hệ thống
+Đảm bảo 100% nhân viên mới làm chủ mô hình Hybrid Workflow, tuân thủ nguyên lý Data
+Isolation, bảo vệ Secrets và tự chủ gỡ lỗi phần mềm cơ bản.
 
-### Module 2: Trình duyệt làm việc (`browser-setup/`)
-- Tạo tối thiểu 2 Profile độc lập (`Personal` và `TechNova_Work`) để tránh lộ lọt cookie/session.
-- Sắp xếp Bookmark theo 3 nhóm: Dev, Onboarding, Tools.
-- Giới hạn quyền extension ở mức `On click` và nắm vững các thao tác DevTools cơ bản (Inspect, Network, Hard Reload).
+2. Kiến trúc Môi trường Số
+2.1. Không gian Đám mây &amp; Phân quyền
+Áp dụng cây thư mục dự án 5 trụ cột tiêu chuẩn. Phân định rõ 3 cấp độ truy cập: Viewer,
+Commenter và Editor. Nghiêm cấm chia sẻ quyền Editor cho các liên kết công khai.
+2.2. Đa Profile Trình duyệt
+Tách biệt hoàn toàn giữa Profile cá nhân và Profile công việc TechNova_Work nhằm đảm bảo an
+toàn dữ liệu và tối ưu hiệu suất làm việc.
 
-### Module 3: Bảo mật thông tin (`security/`)
-- Dùng Bitwarden sinh pass ngẫu nhiên từ 16-32 ký tự (1 tài khoản 1 pass riêng).
-- Bật 2FA bằng App Authenticator và lưu backup codes cẩn thận.
-- Nằm lòng quy tắc 5 KHÔNG và bảo vệ tuyệt đối các secret key bằng file `.env` cùng `.gitignore`.
-
-### Module 4: Tự tra cứu & Gỡ lỗi (`troubleshooting/`)
-- Dùng toán tử Google nâng cao (`site:`, dấu ngoặc kép `""`) để tìm chính xác thông tin kỹ thuật.
-- Biết lọc lọc câu trả lời uy tín trên StackOverflow và GitHub Issues.
-- Sử dụng prompt AI đúng cấu trúc 3 phần và áp dụng khung báo lỗi 4 bước (Context - Expected - Actual - Logs) khi cần nhờ IT hỗ trợ.
+3. Quy chuẩn An toàn Thông tin &amp; Gỡ lỗi
+3.1. Quản lý Mật khẩu &amp; Secrets
+Sử dụng Bitwarden sinh mật khẩu mạnh 16-32 ký tự, kích hoạt 2FA TOTP. Sử dụng cặp tệp .env và
+.gitignore để bảo vệ tuyệt đối các chuỗi API Key và Credentials.
+3.2. Quy trình Báo lỗi Bug Reporting
+Nhân viên tuân thủ Bug Reporting Framework 4 bước (Context - Expected - Actual -
+Log/Screenshot) trước khi gửi yêu cầu hỗ trợ tới bộ phận IT.
