@@ -1,0 +1,31 @@
+# Tài liệu Đặc tả Yêu cầu Hệ thống (SRS)
+## Dự án: TechNova Digital Onboarding Kit
+
+## 1. Tổng quan bài toán
+Startup TechNova mỗi tháng đón thêm 10-15 nhân sự mới nhưng thiếu quy trình bàn giao đồng bộ. Dự án này xây dựng một bộ cẩm nang số nhằm giải quyết 4 vấn đề cốt lõi:
+- **Không gian cộng tác:** Quy chuẩn hóa Hybrid Workflow và phân quyền file an toàn.
+- **Môi trường trình duyệt:** Tách biệt tài khoản cá nhân và công việc qua đa Profile.
+- **An toàn thông tin:** Quản lý pass bằng Bitwarden, bật 2FA và bảo vệ file `.env`.
+- **Tự chủ gỡ lỗi:** Trang bị kỹ năng tra cứu Google và báo lỗi 4 bước cho nhân viên mới.
+
+## 2. Chi tiết 4 Module chính
+
+### Module 1: Không gian đám mây (`cloud-workspace/`)
+- Lưu bản làm việc trên ổ cứng Local, đồng thời bật Google Drive for Desktop để auto-sync lên cloud.
+- Đặt tên thư mục theo chuẩn `kebab-case` (ví dụ: `01-projects/`, `05-personal/`).
+- Phân quyền rõ ràng (Viewer, Commenter, Editor); tuyệt đối không dùng link công khai kèm quyền Editor.
+
+### Module 2: Trình duyệt làm việc (`browser-setup/`)
+- Tạo tối thiểu 2 Profile độc lập (`Personal` và `TechNova_Work`) để tránh lộ lọt cookie/session.
+- Sắp xếp Bookmark theo 3 nhóm: Dev, Onboarding, Tools.
+- Giới hạn quyền extension ở mức `On click` và nắm vững các thao tác DevTools cơ bản (Inspect, Network, Hard Reload).
+
+### Module 3: Bảo mật thông tin (`security/`)
+- Dùng Bitwarden sinh pass ngẫu nhiên từ 16-32 ký tự (1 tài khoản 1 pass riêng).
+- Bật 2FA bằng App Authenticator và lưu backup codes cẩn thận.
+- Nằm lòng quy tắc 5 KHÔNG và bảo vệ tuyệt đối các secret key bằng file `.env` cùng `.gitignore`.
+
+### Module 4: Tự tra cứu & Gỡ lỗi (`troubleshooting/`)
+- Dùng toán tử Google nâng cao (`site:`, dấu ngoặc kép `""`) để tìm chính xác thông tin kỹ thuật.
+- Biết lọc lọc câu trả lời uy tín trên StackOverflow và GitHub Issues.
+- Sử dụng prompt AI đúng cấu trúc 3 phần và áp dụng khung báo lỗi 4 bước (Context - Expected - Actual - Logs) khi cần nhờ IT hỗ trợ.
